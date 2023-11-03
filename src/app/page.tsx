@@ -1,37 +1,55 @@
+import { StargateClient } from "@cosmjs/stargate";
 import Link from "next/link";
+import Overview from "./_components/overview";
+import RefetchBalance from "./_components/refetch-balance";
 
-export default function HomePage() {
+export default async function HomePage() {
+  const osmoRpc = "https://osmosis-rpc.publicnode.com:443";
+  const kujiRpc = "https://kujira-rpc.publicnode.com:443";
+
+  const osmoClient = await StargateClient.connect(osmoRpc);
+  const kujiClient = await StargateClient.connect(kujiRpc);
+  const osmoResult = await osmoClient.getBalance(
+    process.env.NEXT_PUBLIC_OSMO_ADDRESS ?? "",
+    "uosmo",
+  );
+  const kujiResult = await kujiClient.getBalance(
+    process.env.NEXT_PUBLIC_KUJI_ADDRESS ?? "",
+    "ukuji",
+  );
+
+  const kujiBalance = parseInt(kujiResult.amount) / 1000000;
+  const osmoBalance = parseInt(osmoResult.amount) / 1000000;
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
-      <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
-        <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
-          Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
-        </h1>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
-          <Link
-            className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-            href="https://create.t3.gg/en/usage/first-steps"
-            target="_blank"
-          >
-            <h3 className="text-2xl font-bold">First Steps →</h3>
-            <div className="text-lg">
-              Just the basics - Everything you need to know to set up your
-              database and authentication.
-            </div>
-          </Link>
-          <Link
-            className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-            href="https://create.t3.gg/en/introduction"
-            target="_blank"
-          >
-            <h3 className="text-2xl font-bold">Documentation →</h3>
-            <div className="text-lg">
-              Learn more about Create T3 App, the libraries it uses, and how to
-              deploy it.
-            </div>
-          </Link>
+    <main className="flex min-h-screen flex-col bg-gradient-to-bl from-gray-700 via-gray-900 to-black px-4 text-white">
+      <h1 className="pt-10  text-4xl font-bold md:text-5xl">Osmo vs Kuji</h1>
+      <div className="py-5">
+        <RefetchBalance />
+      </div>
+      <div className="flex flex-col gap-2 pb-6">
+        <div>
+          <div>Osmosis balance: {osmoBalance.toFixed(4)}</div>
+          <div className="text-xs text-white/50">
+            {process.env.NEXT_PUBLIC_OSMO_ADDRESS}
+          </div>
+        </div>
+        <div>
+          <div>Kujira balance: {kujiBalance.toFixed(4)}</div>
+          <div className="text-xs text-white/50">
+            {process.env.NEXT_PUBLIC_KUJI_ADDRESS}
+          </div>
         </div>
       </div>
+
+      <h2 className="flex items-center gap-3 pb-10 font-semibold">
+        Current winner
+        <div className="w-fit rounded-full bg-white px-3 py-0.5 text-neutral-800">
+          {kujiBalance > osmoBalance ? "Kujira" : "Osmosis"} 🎉
+        </div>
+      </h2>
+      <div></div>
+      <Overview kujiBalance={kujiBalance} osmoBalance={osmoBalance}></Overview>
     </main>
   );
 }
