@@ -29,7 +29,7 @@ export default async function HomePage() {
           <Image
             alt="osmo vs kuji background"
             className="object-cover"
-            src="/osmovskuji2.jpg"
+            src="/osmovskuji-background.jpg"
             fill
           />
         </div>
@@ -41,12 +41,13 @@ export default async function HomePage() {
             <div className="flex flex-col gap-5 py-5 leading-relaxed text-white/80">
               <p>
                 Disclaimer: This is all in good fun! The true winners are Cosmos
-                and NextJS, as we celebrate my birthday with a playful twist.
-                <b>
-                  I want to make it clear that I have a special place in my
-                  heart for both of these amazing projects
-                </b>
+                and NextJS, as we celebrate my birthday with a playful twist.{" "}
               </p>
+
+              <b>
+                I want to make it clear that I have a special place in my heart
+                for both of these amazing projects
+              </b>
 
               <p className="">
                 This friendly competition is just a way to have some fun, and in
