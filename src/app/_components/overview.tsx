@@ -19,7 +19,7 @@ export default function Overview({
     },
   ];
   return (
-    <ResponsiveContainer className="w-full md:w-64" height={300}>
+    <ResponsiveContainer height={250}>
       <BarChart data={data}>
         <XAxis
           dataKey="name"
@@ -30,7 +30,7 @@ export default function Overview({
           axisLine={false}
         />
 
-        <Bar dataKey="total" fill="white" radius={[4, 4, 0, 0]} />
+        <Bar dataKey="total" fill="white" radius={[8, 8, 0, 0]} />
       </BarChart>
     </ResponsiveContainer>
   );

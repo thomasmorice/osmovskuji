@@ -8,9 +8,12 @@ const inter = Inter({
 });
 
 export const metadata = {
+  "twitter:title": "OSMO vs KUJI",
   title: "OSMO vs KUJI",
   description:
-    "Here is an opportunity to get some gift for my birthday, and settle the battle between Kuji and Osmo once and for all",
+    "This is all in good fun! The true winners are Cosmos and NextJS",
+
+  "twitter:image": "/osmovskuji2.jpg",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
