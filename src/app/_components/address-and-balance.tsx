@@ -15,9 +15,9 @@ export default function AddressAndBalance({
   return (
     <div
       className="cursor-pointer"
-      onClick={() => {
+      onClick={async () => {
         setHasBeenCopied(true);
-        navigator.clipboard.writeText(address);
+        await navigator.clipboard.writeText(address);
       }}
     >
       <div className="flex items-center gap-1 font-bold">
