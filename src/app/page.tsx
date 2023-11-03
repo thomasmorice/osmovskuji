@@ -3,10 +3,9 @@ import Overview from "./_components/overview";
 import RefetchBalance from "./_components/refetch-balance";
 import AddressAndBalance from "./_components/address-and-balance";
 import Image from "next/image";
-import { revalidatePath } from "next/cache";
+export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
-  revalidatePath("/");
   const osmoRpc = "https://osmosis-rpc.publicnode.com:443";
   const kujiRpc = "https://kujira-rpc.publicnode.com:443";
 
