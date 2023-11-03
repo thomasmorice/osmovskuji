@@ -23,12 +23,13 @@ export default async function HomePage() {
   const osmoBalance = parseInt(osmoResult.amount) / 1000000;
 
   return (
-    <div className="flex  flex-col items-center bg-gradient-to-br from-gray-900 to-gray-600 pb-10">
+    <div className="flex flex-col items-center bg-black pb-10">
       <div className="flex max-w-4xl flex-col items-center">
         <div className="relative h-[320px] w-full  sm:h-[480px] lg:h-[680px]">
           <Image
+            priority
             alt="osmo vs kuji background"
-            className="object-cover"
+            className="rounded-b-2xl object-cover"
             src="/osmovskuji-background.jpg"
             fill
           />
@@ -38,13 +39,13 @@ export default async function HomePage() {
             <h1 className="pt-10  text-4xl font-bold md:text-5xl">
               Osmo vs Kuji
             </h1>
-            <div className="flex flex-col gap-5 py-5 leading-relaxed text-white/80">
+            <div className="flex flex-col gap-5 py-5 text-sm leading-relaxed text-white/80">
               <p>
                 Disclaimer: This is all in good fun! The true winners are Cosmos
                 and NextJS, as we celebrate my birthday with a playful twist.{" "}
               </p>
 
-              <b>
+              <b className="text-white">
                 I want to make it clear that I have a special place in my heart
                 for both of these amazing projects
               </b>
@@ -54,10 +55,6 @@ export default async function HomePage() {
                 reality, I appreciate the unique strengths and innovations that
                 each infrastructure brings to the table.
               </p>
-              {/* I discovered Cosmos ecosystem thanks to Osmosis, and I felt in love,
-            and deepened my knowledge in DeFi with Kuji.  */}
-
-              <p>Enjoy the festivities and the tech experiments!</p>
             </div>
             <div className="flex flex-wrap gap-6">
               <div className="order-2 w-64 sm:order-1">
