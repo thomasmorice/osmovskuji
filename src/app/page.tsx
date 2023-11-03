@@ -45,7 +45,12 @@ export default async function HomePage() {
       <h2 className="flex items-center gap-3 pb-10 font-semibold">
         Current winner
         <div className="w-fit rounded-full bg-white px-3 py-0.5 text-neutral-800">
-          {kujiBalance > osmoBalance ? "Kujira" : "Osmosis"} 🎉
+          {kujiBalance === osmoBalance
+            ? "TIE!"
+            : kujiBalance > osmoBalance
+            ? "Kujira"
+            : "Osmosis"}{" "}
+          🎉
         </div>
       </h2>
       <div></div>
