@@ -20,6 +20,9 @@ export default async function HomePage() {
     "ukuji",
   );
 
+  osmoClient.disconnect();
+  kujiClient.disconnect();
+
   const kujiBalance = parseInt(kujiResult.amount) / 1000000;
   const osmoBalance = parseInt(osmoResult.amount) / 1000000;
 
